@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 14 $
-# Revision date   : $Date: 2005-02-11 14:06:20 -0600 (Fri, 11 Feb 2005) $
+# Last Revision   : $Rev: 21 $
+# Revision date   : $Date: 2005-02-20 22:24:53 -0600 (Sun, 20 Feb 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish $
 
@@ -23,11 +23,16 @@
 #                                                         		#
 #########################################################################
 
-my %CodeID = ( Rev    => '$Rev: 14 $'     ,
-               Date   => '$Date: 2005-02-11 14:06:20 -0600 (Fri, 11 Feb 2005) $'    ,
+my %CodeID = ( Rev    => '$Rev: 21 $'     ,
+               Date   => '$Date: 2005-02-20 22:24:53 -0600 (Sun, 20 Feb 2005) $'    ,
                Author => '$Author: keithl $'  ,
                URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish $' ,
              );
+
+$VERSION =   $CodeID{URL};
+$VERSION =~  s#^.*dirvish_##;  # strip off the front
+$VERSION =~  s#\/.*##;         # strip off the rear after the last /
+$VERSION =~  s#[_-]#.#g;       # _ or - to "."
 
 #########################################################
 #

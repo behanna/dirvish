@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 14 $
-# Revision date   : $Date: 2005-02-11 14:06:20 -0600 (Fri, 11 Feb 2005) $
+# Last Revision   : $Rev: 21 $
+# Revision date   : $Date: 2005-02-20 22:24:53 -0600 (Sun, 20 Feb 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvishlib.pl $
 
@@ -27,8 +27,8 @@ $VERSION = "1.3khl";
 #########################################################################
 
 my %CodeID = (
-           Rev    => '$Rev: 14 $'     ,
-           Date   => '$Date: 2005-02-11 14:06:20 -0600 (Fri, 11 Feb 2005) $'    ,
+           Rev    => '$Rev: 21 $'     ,
+           Date   => '$Date: 2005-02-20 22:24:53 -0600 (Sun, 20 Feb 2005) $'    ,
            Author => '$Author: keithl $'  ,
            URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvishlib.pl $' ,
 );
@@ -50,6 +50,7 @@ sub imsort
 
 
 #----------------------------------------------------------------------------
+#
 #
 #  refactored from dirvish-expire.pl
 
@@ -77,11 +78,22 @@ sub check_expire
 }
 
 
-
 #----------------------------------------------------------------------------
+#  findop
+#    is used by dirvish-expire to look for summary files in a bank.
+#  findop is called with File::Find::find ( \&findop, $VAULT | $BANK )
+#  
+#  findop should be looking for files of the form:
+#  ... /$BANK/$VAULT/$IMAGE/summary, then process those files.
 #
+#  findop will not look inside "tree" files, but it WILL look anywhere
+#  else.  So a file ... /bank/nonvault/dir1/dir2/dir3/summary will be
+#  considered a dirvish summary file, then get processed incorrectly.
+#  Therefore, put ONLY vaults in banks.
 #
-#  refactored from dirvish-expire.pl
+#  For now, findop is used only by dirvish-expire, but in the future it will
+#  also be used in testing routines, so it stays in the subroutine library.
+#                                          refactored from dirvish-expire.pl
 
 sub findop
 {
