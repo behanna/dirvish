@@ -1,3 +1,6 @@
+#!/usr/bin/perl
+
+$CONFDIR = "/etc/dirvish";
 
 #       $Id: dirvish.pl,v 12.0 2004/02/25 02:42:15 jw Exp $  $Name: Dirvish-1_2 $
 
@@ -51,6 +54,8 @@ use Getopt::Long;
 use Time::ParseDate;
 use Time::Period;
 
+use Dirvish::loadconfig;
+
 @rsyncargs = qw(-vrltH --delete);
 
 %RSYNC_CODES = (
@@ -71,10 +76,10 @@ use Time::Period;
 	 21 => [ 'error',	"some error returned by waitpid()" ],
 	 22 => [ 'error',	"error allocating core memory buffers" ],
 	 23 => [ 'error',	"partial transfer" ],
-	 24 => [ 'error',	"file vanished on sender" ],
 
 	 30 => [ 'error',	"timeout in data send/receive" ],
 
+	100 => [ 'warning',	"file vanished on sender" ],
 	124 => [ 'fatal',	"remote shell failed" ],
 	125 => [ 'error',	"remote shell killed" ],
 	126 => [ 'fatal',	"command could not be run" ],
@@ -114,7 +119,6 @@ use Time::Period;
 sub errorscan;
 sub logappend;
 sub scriptrun;
-sub seppuku;
 
 sub usage
 {
@@ -411,8 +415,9 @@ if ($$Options{Expire} && $$Options{Expire} !~ /Never/i)
 	$$Options{Expire} = 'Never';
 }
 
-($srctree, $aliastree) = split(/\s+/, $$Options{tree})
+($srctree, $aliastree) = split(/[^\\]\s+/, $$Options{tree})
 	or seppuku 228, "ERROR: no source tree defined";
+$srctree =~ s(\\ )( )g;
 $srctree =~ s(/+$)();
 $aliastree =~ s(/+$)();
 $aliastree ||= $srctree;
@@ -452,7 +457,7 @@ if (!$$Options{'no-run'})
 	mkdir $destree, 0755;
 
 	open(SUMMARY, ">$vault/$image/summary")
-		or seppuku 231, "cannot create $vault/$image/summary"; 
+		or seppuku 231, "cannot create $vault/$image/summary";
 } else {
 	open(SUMMARY, ">-");
 }
@@ -525,10 +530,13 @@ $$Options{'no-run'} and exit 0;
 
 printf SUMMARY "%s: %s\n", 'Backup-begin', strftime('%Y-%m-%d %H:%M:%S', localtime);
 
+$env_srctree = $srctree;
+$env_srctree =~ s/ /\\ /g;
+
 $WRAPPER_ENV = sprintf (" %s=%s" x 5,
 	'DIRVISH_SERVER', $$Options{Server},
 	'DIRVISH_CLIENT', $$Options{client},
-	'DIRVISH_SRC', $srctree,
+	'DIRVISH_SRC', $env_srctree,
 	'DIRVISH_DEST', $destree,
 	'DIRVISH_IMAGE', join(':',
 		$$Options{vault},
@@ -922,7 +930,7 @@ sub scriptrun
 	ref($A{cmd}) and seppuku 232, "$A{lable} option specification error";
 
 	$cmd = strftime($A{cmd}, localtime($A{now}));
-	if ($A{dir} =~ /^:/)
+	if ($A{dir} !~ /^:/)
 	{
 		$rcmd = sprintf ("%s 'cd %s; %s %s' >>%s",
 			("$A{shell}" || "/bin/sh -c"),

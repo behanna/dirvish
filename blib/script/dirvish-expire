@@ -1,4 +1,7 @@
+#!/usr/bin/perl 
 
+eval 'exec /usr/bin/perl  -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
 
 #       $Id: dirvish-expire.pl,v 12.0 2004/02/25 02:42:14 jw Exp $  $Name: Dirvish-1_2 $
 
@@ -32,11 +35,11 @@ use POSIX qw(strftime);
 use File::Find;
 use Getopt::Long;
 
-sub loadconfig;
+use Dirvish::loadconfig;
+
 sub check_expire;
 sub findop;
 sub imsort;
-sub seppuku;
 
 sub usage
 {
@@ -166,13 +169,51 @@ for $expire (sort(imsort @expires))
 
 	$$Options{'no-run'} and next;
 
-	system("rm -rf $$expire{path}/tree");
-	$$Options{tree} and next;
+        $exit = system("chmod -R u+rwX $$expire{path}/tree");
+        check_exitcode("Failed to chmod $$expire{path}/tree", "chmod", $exit);
 
-	system("rm -rf $$expire{path}");
+        $exit = system("rm -rf $$expire{path}/tree");
+        check_exitcode("Failed to delete $$expire{path}/tree", "rm", $exit);
+
+        $$Options{tree} and next;
+
+        $exit = system("chmod -R u+rwX $$expire{path}");
+        check_exitcode("Failed to chmod $$expire{path}", "chmod", $exit);
+
+        $exit = system("rm -rf $$expire{path}");
+        check_exitcode("Failed to delete $$expire{path}", "rm", $exit);
 }
 
 exit 0;
+
+sub check_exitcode
+{
+  my ($action, $command, $exit) = @_;
+  my $msg = "WARNING: $action. $command ";
+
+  # Code based on the documentation for the system() call in Programming  Perl,2nd ed.
+  $exit &= 0xffff;
+
+  if ($exit == 0) {
+    return 1;
+  } elsif ($exit == 0xff00) {
+    $msg .= " failed: $!";
+  } elsif ($exit > 0x80) {
+    $exit >>= 8;
+    $msg .= "exited with status $exit.";
+  } else {
+    $msg .= "failed with ";
+    if ($exit & 0x80) {
+      $exit &= ~0x80;
+      $msg .= "coredump from ";
+    }
+    $msg .= "signal $exit.";
+  }
+
+  print STDERR "$msg\n";
+
+  return 0;
+}
 
 sub check_expire
 {

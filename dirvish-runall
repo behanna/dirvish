@@ -1,3 +1,6 @@
+#!/usr/bin/perl
+
+$CONFDIR = "/etc/dirvish";
 
 #       $Id: dirvish-runall.pl,v 12.0 2004/02/25 02:42:14 jw Exp $  $Name: Dirvish-1_2 $
 
@@ -30,8 +33,7 @@ use Time::ParseDate;
 use POSIX qw(strftime);
 use Getopt::Long;
 
-sub loadconfig;
-sub seppuku;
+use Dirvish::loadconfig;
 
 sub usage
 {
