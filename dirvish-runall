@@ -1,17 +1,6 @@
-
-#       $Id: dirvish-runall.pl,v 12.0 2004/02/25 02:42:14 jw Exp $  $Name: Dirvish-1_2 $
-
-$VERSION = ('$Name: Dirvish-1_2 $' =~ /Dirvish/i)
-	? ('$Name: Dirvish-1_2 $' =~ m/^.*:\s+dirvish-(.*)\s*\$$/i)[0]
-	: '1.1.2 patch' . ('$Id: dirvish-runall.pl,v 12.0 2004/02/25 02:42:14 jw Exp $'
-		=~ m/^.*,v(.*:\d\d)\s.*$/)[0];
-$VERSION =~ s/_/./g;
-
+# dirvish-runall
 
 #########################################################################
-#                                                         		#
-#	Copyright 2002 and $Date: 2004/02/25 02:42:14 $
-#                         Pegasystems Technologies and J.W. Schultz 	#
 #                                                         		#
 #	Licensed under the Open Software License version 2.0		#
 #                                                         		#
@@ -30,8 +19,7 @@ use Time::ParseDate;
 use POSIX qw(strftime);
 use Getopt::Long;
 
-sub loadconfig;
-sub seppuku;
+require "dirvishlib.pl";
 
 sub usage
 {
@@ -54,13 +42,7 @@ EOUSAGE
 	exit 255;
 }
 
-$Options = {
-	version		=> sub {
-			print STDERR "dirvish version $VERSION\n";
-			exit(0);
-		},
-	help		=> \&usage,
-};
+reset_options();                 # initialize the %$Options hash
 
 GetOptions($Options, qw(
 		config=s
@@ -72,26 +54,12 @@ if ($$Options{config})
 {
 	$Config = loadconfig(undef, $$Options{config})
 }
-elsif ($CONFDIR =~ /dirvish$/ && -f "$CONFDIR.conf")
-{
-	$Config = loadconfig(undef, "$CONFDIR.conf");
-}
-elsif (-f "$CONFDIR/master.conf")
-{
-	$Config = loadconfig(undef, "$CONFDIR/master.conf");
-}
-elsif (-f "$CONFDIR/dirvish.conf")
-{
-	seppuku 250, <<EOERR;
-ERROR: no master configuration file.
-	An old $CONFDIR/dirvish.conf file found.
-	Please read the dirvish release notes.
-EOERR
-}
 else
 {
-	seppuku 251, "ERROR: no global configuration file";
+	load_master_config() ;
 }
+
+
 $$Config{Dirvish} ||= 'dirvish';
 
 $$Options{'no-run'} and $$Options{quiet} = 0;

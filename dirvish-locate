@@ -1,16 +1,7 @@
-#       $Id: dirvish-locate.pl,v 12.0 2004/02/25 02:42:14 jw Exp $  $Name: Dirvish-1_2 $
 
-$VERSION = ('$Name: Dirvish-1_2 $' =~ /Dirvish/i)
-	? ('$Name: Dirvish-1_2 $' =~ m/^.*:\s+dirvish-(.*)\s*\$$/i)[0]
-	: '1.1.2 patch' . ('$Id: dirvish-locate.pl,v 12.0 2004/02/25 02:42:14 jw Exp $'
-		=~ m/^.*,v(.*:\d\d)\s.*$/)[0];
-$VERSION =~ s/_/./g;
-
+# dirvish-locate
 
 #########################################################################
-#                                                         		#
-#	Copyright 2003 and $Date: 2004/02/25 02:42:14 $
-#                         Pegasystems Technologies and J.W. Schultz 	#
 #                                                         		#
 #	Licensed under the Open Software License version 2.0		#
 #                                                         		#
@@ -30,11 +21,7 @@ use POSIX qw(strftime);
 use File::Find;
 use Getopt::Long;
 
-sub loadconfig;
-sub check_expire;
-sub findop;
-sub imsort;
-sub seppuku;
+require "dirvishlib.pl";
 
 $KILLCOUNT = 1000;
 $MAXCOUNT = 100;
@@ -54,35 +41,10 @@ EOUSAGE
 	exit 255;
 }
 
-$Options = 
-{ 
-	help		=> \&usage,
-	version		=> sub {
-			print STDERR "dirvish version $VERSION\n";
-			exit(0);
-		},
-};
+reset_options();          # initialize the %$Options hash
 
-if ($CONFDIR =~ /dirvish$/ && -f "$CONFDIR.conf")
-{
-	loadconfig(undef, "$CONFDIR.conf", $Options);
-}
-elsif (-f "$CONFDIR/master.conf")
-{
-	loadconfig(undef, "$CONFDIR/master.conf", $Options);
-}
-elsif (-f "$CONFDIR/dirvish.conf")
-{
-	seppuku 250, <<EOERR;
-ERROR: no master configuration file.
-	An old $CONFDIR/dirvish.conf file found.
-	Please read the dirvish release notes.
-EOERR
-}
-else
-{
-	seppuku 251, "ERROR: no global configuration file";
-}
+load_master_config();
+
 
 GetOptions($Options, qw(
 	version
@@ -227,10 +189,4 @@ for $path (sort(keys(%match)))
 }
 
 exit 0;
-
-sub imsort
-{
-	$$a{branch} cmp $$b{branch}
-	|| $$b{created} cmp $$a{created};
-}
 

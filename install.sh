@@ -1,5 +1,9 @@
 #! /bin/sh
 
+###  This will be replaced with Makefile.pl , make 
+###  KHL
+###
+
 case `echo "testing\c"; echo 1,2,3`,`echo -n testing; echo 1,2,3` in
 	*c*,-n*) ECHO_N= ECHO_C='
 ' ECHO_T='      ' ;;

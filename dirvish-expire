@@ -1,18 +1,6 @@
-
-
-#       $Id: dirvish-expire.pl,v 12.0 2004/02/25 02:42:14 jw Exp $  $Name: Dirvish-1_2 $
-
-$VERSION = ('$Name: Dirvish-1_2 $' =~ /Dirvish/i)
-	? ('$Name: Dirvish-1_2 $' =~ m/^.*:\s+dirvish-(.*)\s*\$$/i)[0]
-	: '1.1.2 patch' . ('$Id: dirvish-expire.pl,v 12.0 2004/02/25 02:42:14 jw Exp $'
-		=~ m/^.*,v(.*:\d\d)\s.*$/)[0];
-$VERSION =~ s/_/./g;
-
+# dirvish-expire
 
 #########################################################################
-#                                                         		#
-#	Copyright 2002 and $Date: 2004/02/25 02:42:14 $
-#                         Pegasystems Technologies and J.W. Schultz 	#
 #                                                         		#
 #	Licensed under the Open Software License version 2.0		#
 #                                                         		#
@@ -32,11 +20,7 @@ use POSIX qw(strftime);
 use File::Find;
 use Getopt::Long;
 
-sub loadconfig;
-sub check_expire;
-sub findop;
-sub imsort;
-sub seppuku;
+require "dirvishlib.pl";
 
 sub usage
 {
@@ -59,35 +43,9 @@ EOUSAGE
 	exit 255;
 }
 
-$Options = 
-{ 
-	help		=> \&usage,
-	version		=> sub {
-			print STDERR "dirvish version $VERSION\n";
-			exit(0);
-		},
-};
+reset_options();          # initialize the %$Options hash
 
-if ($CONFDIR =~ /dirvish$/ && -f "$CONFDIR.conf")
-{
-	loadconfig(undef, "$CONFDIR.conf", $Options);
-}
-elsif (-f "$CONFDIR/master.conf")
-{
-	loadconfig(undef, "$CONFDIR/master.conf", $Options);
-}
-elsif (-f "$CONFDIR/dirvish.conf")
-{
-	seppuku 250, <<EOERR;
-ERROR: no master configuration file.
-	An old $CONFDIR/dirvish.conf file found.
-	Please read the dirvish release notes.
-EOERR
-}
-else
-{
-	seppuku 251, "ERROR: no global configuration file";
-}
+load_master_config();
 
 GetOptions($Options, qw(
 	quiet!
@@ -166,89 +124,33 @@ for $expire (sort(imsort @expires))
 
 	$$Options{'no-run'} and next;
 
+##  This code MAY get replaced by the following code.  There may be
+##  a portability issue.  This code was written by EricM,
+##  to fix a file removal problem noticed by Michael T.    See the
+##  Wiki for ChmodOnExpire
+
 	system("rm -rf $$expire{path}/tree");
 	$$Options{tree} and next;
 
 	system("rm -rf $$expire{path}");
-}
 
+##	$exit = system("chmod u+rwX $$expire{path}/tree
+##         && find $$expire{path}/tree -type d -exec chmod u+rwX \\{\\} \\;");
+##	check_exitcode("Failed to chmod $$expire{path}/tree and subdirectories",
+##            "chmod/find", $exit);
+##
+##      $exit = system("rm -rf $$expire{path}/tree");
+##       check_exitcode("Failed to delete $$expire{path}/tree", "rm", $exit);
+##
+##      $$Options{tree} and next;
+##
+##	$exit = system("chmod u+rwX $$expire{path}
+##         && find $$expire{path} -type d -exec chmod u+rwX \\{\\} \\;");
+##	check_exitcode("Failed to chmod $$expire{path} and subdirectories",
+##           "chmod/find", $exit);
+##
+##       $exit = system("rm -rf $$expire{path}");
+##      check_exitcode("Failed to delete $$expire{path}", "rm", $exit);
+
+}
 exit 0;
-
-sub check_expire
-{
-	my ($summary, $expire_time) = @_;
-
-	my ($expire, $etime, $path);
-
-	$expire = $$summary{Expire};
-	$expire =~ s/^.*==\s+//;
-	$expire or return 0;
-	$expire =~ /never/i and return 0;
-
-	$etime = parsedate($expire);
-
-	if (!$etime)
-	{
-		print STDERR "$File::Find::dir: invalid expiration time $$summary{expire}\n";
-		return -1;
-	}
-	$etime > $expire_time and return 0;
-
-	return 1;
-}
-
-sub findop
-{
-	if ($_ eq 'tree')
-	{
-		$File::Find::prune = 1;
-		return 0;
-	}
-	if ($_ eq 'summary')
-	{
-		my $summary;
-		my ($etime, $path);
-
-		$path = $File::Find::dir;
-
-		$summary = loadconfig('R', $File::Find::name);
-		$status = check_expire($summary, $expire_time);
-		
-		$status < 0 and return;
-
-		$$summary{vault} && $$summary{branch} && $$summary{Image}
-			or return;
-
-		if ($status == 0)
-		{
-			$$summary{Status} =~ /^success/ && -d ($path . '/tree')
-				and ++$unexpired{$$summary{vault}}{$$summary{branch}};
-			return;
-		}
-
-		-d ($path . ($$Options{tree} ? '/tree': undef)) or return;
-
-		push (@expires, {
-				vault	=> $$summary{vault},
-				branch	=> $$summary{branch},
-				client	=> $$summary{client},
-				tree	=> $$summary{tree},
-				image	=> $$summary{Image},
-				created	=> $$summary{'Backup-complete'},
-				expire	=> $$summary{Expire},
-				status	=> $$summary{Status},
-				path	=> $path,
-			}
-		);
-	}
-}
-
-## WARNING:  don't mess with the sort order, it is needed so that if
-## WARNING:  all images are expired the newest will be retained.
-sub imsort
-{
-	$$a{vault} cmp $$b{vault}
-	|| $$a{branch} cmp $$b{branch}
-	|| $$a{created} cmp $$b{created};
-}
-
