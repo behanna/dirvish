@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 21 $
-# Revision date   : $Date: 2005-02-20 22:24:53 -0600 (Sun, 20 Feb 2005) $
+# Last Revision   : $Rev: 22 $
+# Revision date   : $Date: 2005-03-28 00:13:42 -0600 (Mon, 28 Mar 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish-runall $
 
@@ -24,10 +24,10 @@
 #########################################################################
 
 my %CodeID = (
-           Rev    => '$Rev: 21 $'     ,
-           Date   => '$Date: 2005-02-20 22:24:53 -0600 (Sun, 20 Feb 2005) $'    ,
-           Author => '$Author: keithl $'  ,
-           URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish-runall $' ,
+    Rev    => '$Rev: 22 $'     ,
+    Date   => '$Date: 2005-03-28 00:13:42 -0600 (Mon, 28 Mar 2005) $'    ,
+    Author => '$Author: keithl $'  ,
+    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish-runall $' ,
 );
 
 $VERSION =   $CodeID{URL};
@@ -43,13 +43,13 @@ require "dirvishlib.pl";
 
 sub usage
 {
-	my $message = shift(@_);
+    my $message = shift(@_);
 
-	length($message) and print STDERR $message, "\n\n";
+    length($message) and print STDERR $message, "\n\n";
 
-	$! and exit(255); # because getopt seems to send us here for death
+    $! and exit(255); # because getopt seems to send us here for death
 
-	print STDERR <<EOUSAGE;
+    print STDERR <<EOUSAGE;
 USAGE
 	dirvish-runall OPTIONS
 OPTIONS
@@ -65,18 +65,18 @@ EOUSAGE
 reset_options();                 # initialize the %$Options hash
 
 GetOptions($Options, qw(
-		config=s
-		quiet no-run|dry-run
-		version help
-	)) or usage;
+        config=s
+        quiet no-run|dry-run
+        version help
+    )) or usage;
 
 if ($$Options{config})
 {
-	$Config = loadconfig(undef, $$Options{config})
+    $Config = loadconfig(undef, $$Options{config})
 }
 else
 {
-	load_master_config() ;
+    load_master_config() ;
 }
 
 
@@ -88,18 +88,18 @@ $errors = 0;
 
 for $sched (@{$$Config{Runall}})
 {
-	($vault, $itime) = split(/\s+/, $sched);
-	$cmd = "$$Config{Dirvish} --vault $vault";
-	$itime and $cmd .= qq[ --image-time "$itime"];
-	$$Options{quiet}
-		or printf "%s %s\n", strftime('%H:%M:%S', localtime), $cmd;
-	$$Options{'no-run'} and next;
-	$status = system($cmd);
-	$status < 0 || $status / 256 and ++$errors;
+    ($vault, $itime) = split(/\s+/, $sched);
+    $cmd = "$$Config{Dirvish} --vault $vault";
+    $itime and $cmd .= qq[ --image-time "$itime"];
+    $$Options{quiet}
+        or printf "%s %s\n", strftime('%H:%M:%S', localtime), $cmd;
+    $$Options{'no-run'} and next;
+    $status = system($cmd);
+    $status < 0 || $status / 256 and ++$errors;
 
 }
 $$Options{quiet}
-	or printf "%s %s\n", strftime('%H:%M:%S', localtime), 'done';
+    or printf "%s %s\n", strftime('%H:%M:%S', localtime), 'done';
 
 
 exit ($errors < 200 ? $errors : 199);
