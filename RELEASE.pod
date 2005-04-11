@@ -3,14 +3,29 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 14 $
-# Revision date   : $Date: 2005-02-11 14:06:20 -0600 (Fri, 11 Feb 2005) $
+# Last Revision   : $Rev: 23 $
+# Revision date   : $Date: 2005-04-10 22:47:44 -0500 (Sun, 10 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/RELEASE.pod $
 
-# THIS FILE NEEDS TO CHANGE FOR version 1.3
-
 =head1 DIRVISH RELEASE NOTES
+
+=head2 Dirvish version 1.2.1 released 18 February 2005
+
+=over
+
+=item * Corrected ANOTHER logic inversion bug in B<pre-client> and
+B<post-client> that resulted in the wrong working directory.
+
+=item * Changed rsync code 24 from error to warning.
+
+=item * Changed == to = in the install script.
+
+=item * Allow the use of spaces protected by a backslash in the source
+tree name.
+
+=back
+
 
 =head2 Dirvish version 1.2 released 24 February 2003
 
@@ -20,7 +35,7 @@
 B<post-client> that resulted in the scripts running on the server. They
 will now run on the client as intended.
 
-=item * LIcense changed to OSL.
+=item * License changed to OSL.
 
 =back
 

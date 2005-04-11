@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 14 $
-# Revision date   : $Date: 2005-02-11 14:06:20 -0600 (Fri, 11 Feb 2005) $
+# Last Revision   : $Rev: 23 $
+# Revision date   : $Date: 2005-04-10 22:47:44 -0500 (Sun, 10 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/TODO.pod $
 
@@ -36,7 +36,7 @@ relative path use the config-file search function (when written).
 
 =item * Add a --retry option for retrying a failed dirvish image.
 
-This would require pre-existance of destination image.
+This would require pre-existence of destination image.
 
 Moves summary, log and rsync_error files into try.# directories.
 
