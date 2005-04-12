@@ -2,14 +2,14 @@
 # Build.PL Script for dirvish
 # Version 0.5,  Keith Lofstrom,  2005-Apr-12
 #
-# Last Revision   : $Rev: 32 $
-# Revision date   : $Date: 2005-04-12 12:28:51 -0500 (Tue, 12 Apr 2005) $
+# Last Revision   : $Rev: 33 $
+# Revision date   : $Date: 2005-04-12 17:45:06 -0500 (Tue, 12 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/Build.PL $
 #
 # Dirvish is installed with the following three step process:
 #
-#  ./Build.PL <options>
+#  perl Build.PL <options>
 #  ./Build
 #  ./Build install <options>
 #
@@ -24,8 +24,18 @@
 #
 #  ./Build fakeinstall <options>  # pretend install (no files moved)
 #
-#  ./Build realclean        # wipes out all the files made by ./Build.PL and
-#                           # ./Build ( _build, blib, and ./Build itself )
+#  ./Build realclean  # wipes out all the files made by ./Build.PL and
+#                     # ./Build ( _build, blib, and ./Build itself )
+#
+#  ./Build manifest   # makes Manifest file
+#
+#  ./Build dist    # after "manifest", makes a dirvish-XX.tar.gz file
+#                  # caveat:  requires YAML.pm to be installed, and this:
+#                  #
+#                  # use Module::Build::ConfigData ;
+#                  # Module::Build::ConfigData->set_feature(YAML_support => 1);
+#                  # Module::Build::ConfigData->write();
+#
 #
 # Someday, there will be a "./Build test" option, which will run tests
 # on both installation and basic usage of dirvish.  I do not know how
