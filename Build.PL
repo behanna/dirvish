@@ -2,8 +2,8 @@
 # Build.PL Script for dirvish
 # Version 0.5,  Keith Lofstrom,  2005-Apr-12
 #
-# Last Revision   : $Rev: 33 $
-# Revision date   : $Date: 2005-04-12 17:45:06 -0500 (Tue, 12 Apr 2005) $
+# Last Revision   : $Rev: 35 $
+# Revision date   : $Date: 2005-04-12 18:24:50 -0500 (Tue, 12 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/Build.PL $
 #
@@ -105,7 +105,7 @@ sub process_dirvish_sbin_files {
       "# these lines prepended by $0\n",
       "                             \n",
       "\$CONFDIR = $conf;           \n",
-      "use        $share/$library;  \n",
+      "require    $share/$library;  \n",
       "#----------------------------\n"
    );
 
