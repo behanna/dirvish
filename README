@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 29 $
-# Revision date   : $Date: 2005-04-12 12:16:45 -0500 (Tue, 12 Apr 2005) $
+# Last Revision   : $Rev: 30 $
+# Revision date   : $Date: 2005-04-12 12:20:24 -0500 (Tue, 12 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/README $
 
@@ -35,6 +35,8 @@ things:
     Eventually, the install should also do testing.
 
 3)  I want a heck of a lot more documentation on how this thing works.
+
+4)  The TODO is way out of date.
 
 
 Notes:
