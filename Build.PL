@@ -2,10 +2,10 @@
 # Build.PL Script for dirvish
 # Version 0.5,  Keith Lofstrom,  2005-Apr-12
 #
-# Last Revision   : $Rev: 22 $
-# Revision date   : $Date: 2005-03-27 22:13:42 -0800 (Sun, 27 Mar 2005) $
+# Last Revision   : $Rev: 29 $
+# Revision date   : $Date: 2005-04-12 12:16:45 -0500 (Tue, 12 Apr 2005) $
 # Last Changed by : $Author: keithl $
-# Stored as       : $HeadURL: http://www.dirvish.org/svn/dirvish_1_3_khl/Build.PL $
+# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/Build.PL $
 #
 # Dirvish is installed with the following three step process:
 #
