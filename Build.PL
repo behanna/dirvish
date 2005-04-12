@@ -2,8 +2,8 @@
 # Build.PL Script for dirvish
 # Version 0.5,  Keith Lofstrom,  2005-Apr-12
 #
-# Last Revision   : $Rev: 31 $
-# Revision date   : $Date: 2005-04-12 12:25:43 -0500 (Tue, 12 Apr 2005) $
+# Last Revision   : $Rev: 32 $
+# Revision date   : $Date: 2005-04-12 12:28:51 -0500 (Tue, 12 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/Build.PL $
 #
@@ -27,9 +27,13 @@
 #  ./Build realclean        # wipes out all the files made by ./Build.PL and
 #                           # ./Build ( _build, blib, and ./Build itself )
 #
-# This script will NEVER be run on a non-Unix machine.  It is
-# neither complete nor well tested;  it is a # placeholder to
-# gather comments about my probable misuse of Module::Build . 
+# Someday, there will be a "./Build test" option, which will run tests
+# on both installation and basic usage of dirvish.  I do not know how
+# to write those tests yet.
+#
+# This script will NEVER be run on a non-Unix machine.  It is neither
+# complete nor well tested;  it is a placeholder to gather comments
+# about my probable misuse of Module::Build . 
 # I'm pretty sure I am doing a lot of things the hard way.
 
 use strict                 ;
