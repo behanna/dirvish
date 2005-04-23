@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 37 $
-# Revision date   : $Date: 2005-04-23 14:06:56 -0500 (Sat, 23 Apr 2005) $
+# Last Revision   : $Rev: 38 $
+# Revision date   : $Date: 2005-04-23 14:15:32 -0500 (Sat, 23 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish.PL $
 
@@ -24,8 +24,8 @@
 #########################################################################
 
 my %CodeID =
-    ( Rev    => '$Rev: 37 $'     ,
-      Date   => '$Date: 2005-04-23 14:06:56 -0500 (Sat, 23 Apr 2005) $'    ,
+    ( Rev    => '$Rev: 38 $'     ,
+      Date   => '$Date: 2005-04-23 14:15:32 -0500 (Sat, 23 Apr 2005) $'    ,
       Author => '$Author: keithl $'  ,
       URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish.PL $' ,
     );
@@ -159,9 +159,12 @@ EOUSAGE
 
 #------------------------------------------------------------------------
 
-reset_options();         # initialize the %$Options hash
+reset_options();            # initialize the %$Options hash
 
-load_master_config('f');    
+load_master_config('f');    # 'f' = ignore capitalized options, but why?
+
+# The capitalized options are "Runall" and "Dirvish" - if these options
+# aren't used by this program, why bother to suppress them?
 
 #---------------------------------------------------------------
 # Read the command line.  This puts data into the %$Options hash,
