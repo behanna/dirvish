@@ -2,8 +2,8 @@
 # Build.PL Script for dirvish
 # Version 0.5,  Keith Lofstrom,  2005-Apr-20
 #
-# Last Revision   : $Rev: 37 $
-# Revision date   : $Date: 2005-04-23 14:06:56 -0500 (Sat, 23 Apr 2005) $
+# Last Revision   : $Rev: 41 $
+# Revision date   : $Date: 2005-04-23 14:26:20 -0500 (Sat, 23 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/Build.PL $
 #
@@ -98,7 +98,7 @@ sub process_dirvish_sbin_files {
    my $dat         = localtime ;
  
    my @apps_header = (
-      "#!/usr/bin/perl\n",                    #FIXME should this be config'ed?
+      "#!/usr/bin/perl\n",                    # FIXME should this be config'ed?
       "#--------------------------------------\n",
       "#Configured by Module::Build on $dat\n",
       "# these lines prepended by $0\n",
@@ -239,10 +239,20 @@ my $build = $class->new (
 
    #admin files with no processing
    dirvish_files => {
-     'CHANGELOG'           => 'sharedoc/CHANGELOG',
-     'COPYING'             => 'sharedoc/COPYING',
-     'README'              => 'sharedoc/README',
-     'dirvishlib.pm'       => 'share/dirvishlib.pm'
+      'INSTALL.pod'         => 'sharedoc/INSTALL.pod',
+      'dirvish-runall.pod'  => 'sharedoc/dirvish-runall.pod',
+      'dirvish.conf.pod'    => 'sharedoc/dirvish.conf.pod',
+      'dirvish.pod'         => 'sharedoc/dirvish.pod',
+      'dirvish-expire.pod'  => 'sharedoc/dirvish-expire.pod',
+      'dirvish-locate.pod'  => 'sharedoc/dirvish-locate.pod',
+      'debian.howto.pod'    => 'sharedoc/debian.howto.pod',
+      'RELEASE.pod'         => 'sharedoc/RELEASE.pod',
+      'TODO.pod'            => 'sharedoc/TODO.pod',
+      'FAQ.pod'             => 'sharedoc/FAQ.pod',
+      'CHANGELOG'           => 'sharedoc/CHANGELOG',
+      'COPYING'             => 'sharedoc/COPYING',
+      'README'              => 'sharedoc/README',
+      'dirvishlib.pm'       => 'share/dirvishlib.pm'
    }
 );
 
