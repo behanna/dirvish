@@ -1,9 +1,9 @@
 #!/usr/bin/perl -w
 # Build.PL Script for dirvish
-# Version 0.5,  Keith Lofstrom,  2005-Apr-12
+# Version 0.5,  Keith Lofstrom,  2005-Apr-20
 #
-# Last Revision   : $Rev: 35 $
-# Revision date   : $Date: 2005-04-12 18:24:50 -0500 (Tue, 12 Apr 2005) $
+# Last Revision   : $Rev: 37 $
+# Revision date   : $Date: 2005-04-23 14:06:56 -0500 (Sat, 23 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/Build.PL $
 #
@@ -94,19 +94,19 @@ sub process_dirvish_sbin_files {
 
    my $conf        = $self->{properties}{install_path}{conf}   ;
    my $share       = $self->{properties}{install_path}{share}  ;
-   my $library     = 'dirvishlib.pl' ;
+   my $library     = 'dirvishlib' ;
    my $dat         = localtime ;
  
    my @apps_header = (
-      "#!/usr/bin/perl              \n", #FIXME should this be config'ed?
-      "#----------------------------\n",
-      "#Configured by Module::Build \n",
-      "#on $dat                     \n",
+      "#!/usr/bin/perl\n",                    #FIXME should this be config'ed?
+      "#--------------------------------------\n",
+      "#Configured by Module::Build on $dat\n",
       "# these lines prepended by $0\n",
-      "                             \n",
-      "\$CONFDIR = $conf;           \n",
-      "require    $share/$library;  \n",
-      "#----------------------------\n"
+      "\n",
+      "\$CONFDIR = \"$conf\";\n",
+      "use lib \"$share\";\n",
+      "use      $library;\n",
+      "#--------------------------------------\n"
    );
 
    # modify the files ----
@@ -242,7 +242,7 @@ my $build = $class->new (
      'CHANGELOG'           => 'sharedoc/CHANGELOG',
      'COPYING'             => 'sharedoc/COPYING',
      'README'              => 'sharedoc/README',
-     'dirvishlib.pl'       => 'share/dirvishlib.pl'
+     'dirvishlib.pm'       => 'share/dirvishlib.pm'
    }
 );
 

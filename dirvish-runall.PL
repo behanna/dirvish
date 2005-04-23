@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 29 $
-# Revision date   : $Date: 2005-04-12 12:16:45 -0500 (Tue, 12 Apr 2005) $
+# Last Revision   : $Rev: 37 $
+# Revision date   : $Date: 2005-04-23 14:06:56 -0500 (Sat, 23 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish-runall.PL $
 
@@ -24,8 +24,8 @@
 #########################################################################
 
 my %CodeID = (
-    Rev    => '$Rev: 29 $'     ,
-    Date   => '$Date: 2005-04-12 12:16:45 -0500 (Tue, 12 Apr 2005) $'    ,
+    Rev    => '$Rev: 37 $'     ,
+    Date   => '$Date: 2005-04-23 14:06:56 -0500 (Sat, 23 Apr 2005) $'    ,
     Author => '$Author: keithl $'  ,
     URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish-runall.PL $' ,
 );
@@ -68,15 +68,20 @@ GetOptions($Options, qw(
         version help
     )) or usage;
 
-if ($$Options{config})
+
+## reset_options leaves a coderef in $$Options{config}
+
+if ($$Options{config} and not ref $$Options{config} )
 {
-    $Config = loadconfig(undef, $$Options{config})
+    $Config = loadconfig(undef, $$Options{config});
 }
 else
 {
-    load_master_config() ;
+    $Config = load_master_config() ;
 }
 
+### question - why the heck to we construct the "Config" reference?
+### why not just use "Options"?;
 
 $$Config{Dirvish} ||= 'dirvish';
 

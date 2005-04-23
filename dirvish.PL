@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 29 $
-# Revision date   : $Date: 2005-04-12 12:16:45 -0500 (Tue, 12 Apr 2005) $
+# Last Revision   : $Rev: 37 $
+# Revision date   : $Date: 2005-04-23 14:06:56 -0500 (Sat, 23 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish.PL $
 
@@ -24,8 +24,8 @@
 #########################################################################
 
 my %CodeID =
-    ( Rev    => '$Rev: 29 $'     ,
-      Date   => '$Date: 2005-04-12 12:16:45 -0500 (Tue, 12 Apr 2005) $'    ,
+    ( Rev    => '$Rev: 37 $'     ,
+      Date   => '$Date: 2005-04-23 14:06:56 -0500 (Sat, 23 Apr 2005) $'    ,
       Author => '$Author: keithl $'  ,
       URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish.PL $' ,
     );
@@ -161,7 +161,7 @@ EOUSAGE
 
 reset_options();         # initialize the %$Options hash
 
-load_master_config();    
+load_master_config('f');    
 
 #---------------------------------------------------------------
 # Read the command line.  This puts data into the %$Options hash,
