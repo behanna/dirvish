@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 38 $
-# Revision date   : $Date: 2005-04-23 14:15:32 -0500 (Sat, 23 Apr 2005) $
+# Last Revision   : $Rev: 44 $
+# Revision date   : $Date: 2005-04-26 11:58:52 -0500 (Tue, 26 Apr 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish.PL $
 
@@ -24,8 +24,8 @@
 #########################################################################
 
 my %CodeID =
-    ( Rev    => '$Rev: 38 $'     ,
-      Date   => '$Date: 2005-04-23 14:15:32 -0500 (Sat, 23 Apr 2005) $'    ,
+    ( Rev    => '$Rev: 44 $'     ,
+      Date   => '$Date: 2005-04-26 11:58:52 -0500 (Tue, 26 Apr 2005) $'    ,
       Author => '$Author: keithl $'  ,
       URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_khl/dirvish.PL $' ,
     );
@@ -160,6 +160,8 @@ EOUSAGE
 #------------------------------------------------------------------------
 
 reset_options();            # initialize the %$Options hash
+
+$$Options{'config'} = \&config;  # dirvish is different than other apps
 
 load_master_config('f');    # 'f' = ignore capitalized options, but why?
 
