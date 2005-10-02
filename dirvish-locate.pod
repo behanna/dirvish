@@ -3,10 +3,10 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 14 $
-# Revision date   : $Date: 2005-02-11 12:06:20 -0800 (Fri, 11 Feb 2005) $
+# Last Revision   : $Rev: 57 $
+# Revision date   : $Date: 2005-10-01 20:40:37 -0500 (Sat, 01 Oct 2005) $
 # Last Changed by : $Author: keithl $
-# Stored as       : $HeadURL: http://www.dirvish.org/svn/dirvish_1_3_1/dirvish-locate.pod $
+# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvish-locate.pod $
 
 =head1 NAME
 
