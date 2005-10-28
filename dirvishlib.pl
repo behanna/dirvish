@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 57 $
-# Revision date   : $Date: 2005-10-01 20:40:37 -0500 (Sat, 01 Oct 2005) $
+# Last Revision   : $Rev: 59 $
+# Revision date   : $Date: 2005-10-27 19:02:08 -0500 (Thu, 27 Oct 2005) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishlib.pl $
 
@@ -26,8 +26,8 @@ $VERSION = "1.3.1";
 #########################################################################
 
 my %CodeID = (
-    Rev    => '$Rev: 57 $'     ,
-    Date   => '$Date: 2005-10-01 20:40:37 -0500 (Sat, 01 Oct 2005) $'    ,
+    Rev    => '$Rev: 59 $'     ,
+    Date   => '$Date: 2005-10-27 19:02:08 -0500 (Thu, 27 Oct 2005) $'    ,
     Author => '$Author: keithl $'  ,
     URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishlib.pl $' ,
 );
@@ -618,7 +618,11 @@ sub loadconfig
     while(<$CONFIG>)
     {
         chomp;
-        s/\s*#.*$//;
+#       s/\s*#.*$//;     This line replaced with the three following
+#                        suggested by Dave Howorth on 2005 Oct 27
+        s/^#.*$//;
+        s/\s*[^\\]#.*$//;
+        s/\\#/#/g;
         s/\s+$//;
         /\S/ or next;
       
