@@ -3,10 +3,10 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 62 $
-# Revision date   : $Date: 2006-11-11 17:06:09 -0600 (Sat, 11 Nov 2006) $
+# Last Revision   : $Rev: 63 $
+# Revision date   : $Date: 2006-11-11 17:06:57 -0600 (Sat, 11 Nov 2006) $
 # Last Changed by : $Author: keithl $
-# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishlib.pm $
+# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishhack.pm $
 
 $VERSION = "1.3.1";
 
@@ -26,10 +26,10 @@ $VERSION = "1.3.1";
 #########################################################################
 
 my %CodeID = (
-    Rev    => '$Rev: 62 $'     ,
-    Date   => '$Date: 2006-11-11 17:06:09 -0600 (Sat, 11 Nov 2006) $'    ,
+    Rev    => '$Rev: 63 $'     ,
+    Date   => '$Date: 2006-11-11 17:06:57 -0600 (Sat, 11 Nov 2006) $'    ,
     Author => '$Author: keithl $'  ,
-    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishlib.pm $' ,
+    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishhack.pm $' ,
 );
 
 #----------------------------------------------------------------------------
