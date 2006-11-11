@@ -1,12 +1,12 @@
-# dirvishlib.pl
+# dirvishlib.pm
 # 1.3.X series
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 59 $
-# Revision date   : $Date: 2005-10-27 19:02:08 -0500 (Thu, 27 Oct 2005) $
+# Last Revision   : $Rev: 62 $
+# Revision date   : $Date: 2006-11-11 17:06:09 -0600 (Sat, 11 Nov 2006) $
 # Last Changed by : $Author: keithl $
-# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishlib.pl $
+# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishlib.pm $
 
 $VERSION = "1.3.1";
 
@@ -26,10 +26,10 @@ $VERSION = "1.3.1";
 #########################################################################
 
 my %CodeID = (
-    Rev    => '$Rev: 59 $'     ,
-    Date   => '$Date: 2005-10-27 19:02:08 -0500 (Thu, 27 Oct 2005) $'    ,
+    Rev    => '$Rev: 62 $'     ,
+    Date   => '$Date: 2006-11-11 17:06:09 -0600 (Sat, 11 Nov 2006) $'    ,
     Author => '$Author: keithl $'  ,
-    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishlib.pl $' ,
+    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishlib.pm $' ,
 );
 
 #----------------------------------------------------------------------------
@@ -48,7 +48,6 @@ sub imsort
 
 
 #----------------------------------------------------------------------------
-#
 #
 #                                           refactored from dirvish-expire.pl
 

@@ -2,8 +2,8 @@
 # Build.PL Script for dirvish
 # Version 0.6,  Keith Lofstrom,  2005-Oct-01
 #
-# Last Revision   : $Rev: 57 $
-# Revision date   : $Date: 2005-10-01 20:40:37 -0500 (Sat, 01 Oct 2005) $
+# Last Revision   : $Rev: 62 $
+# Revision date   : $Date: 2006-11-11 17:06:09 -0600 (Sat, 11 Nov 2006) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/Build.PL $
 #
@@ -72,6 +72,7 @@ sub pathdir {
 #
 # We need to add the location of the /config file/ and of
 # the /library/ to each application.  
+#    Remove this - use a perl module
 
 sub process_sbin_files {
    my ($self)      = @_;
