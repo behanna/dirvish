@@ -1,14 +1,28 @@
-# dirvishlib.pm
+package DirvishHack;
+
 # 1.3.X series
-# Copyright 2005 by the dirvish project
+# Copyright 2006 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 63 $
-# Revision date   : $Date: 2006-11-11 17:06:57 -0600 (Sat, 11 Nov 2006) $
+#   This is tuned to work with dirvish 1.3.1 .  Please do not use
+#   for other applications until dirvish 1.3.X stabilizes.
+#
+# Last Revision   : $Rev: 64 $
+# Revision date   : $Date: 2006-11-11 18:33:55 -0600 (Sat, 11 Nov 2006) $
 # Last Changed by : $Author: keithl $
-# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishhack.pm $
+# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/DirvishHack.pm $
+
+use 5.006 ;
+require Exporter;
+@ISA      qw(Exporter);
+@EXPORT   qw( imsort check_expire findop seppuku config client
+              branch vault reset_options reset version errorscan
+              logappend scriptrun slurplist loadconfig
+              load_master_config check_exitcode
+            );
 
 $VERSION = "1.3.1";
+
 
 #########################################################################
 #                                                         		#
@@ -26,10 +40,10 @@ $VERSION = "1.3.1";
 #########################################################################
 
 my %CodeID = (
-    Rev    => '$Rev: 63 $'     ,
-    Date   => '$Date: 2006-11-11 17:06:57 -0600 (Sat, 11 Nov 2006) $'    ,
+    Rev    => '$Rev: 64 $'     ,
+    Date   => '$Date: 2006-11-11 18:33:55 -0600 (Sat, 11 Nov 2006) $'    ,
     Author => '$Author: keithl $'  ,
-    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvishhack.pm $' ,
+    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/DirvishHack.pm $' ,
 );
 
 #----------------------------------------------------------------------------
@@ -764,5 +778,5 @@ sub check_exitcode
     return 0;
 }
 #----------------------------------------------------------------------------
-# end of dirvishlib.pl
+# end of DirvishHack.pm
 1;

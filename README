@@ -3,8 +3,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 57 $
-# Revision date   : $Date: 2005-10-01 20:40:37 -0500 (Sat, 01 Oct 2005) $
+# Last Revision   : $Rev: 64 $
+# Revision date   : $Date: 2006-11-11 18:33:55 -0600 (Sat, 11 Nov 2006) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/README $
 
@@ -40,10 +40,9 @@ This will get a lot cleaner on the 1.4 production release.
 
 Notes:  ----
 
-I have refactored all the subroutines into dirvishlib.pl .  We may
-want to make a package out of this instead.   I added a few subs
-to get rid of the anonymous subs in options, and a routine that
-incorporates the common code for loading the master.conf file, and
+I have refactored all the subroutines into DirvishHack.pm .  I added
+a few subs to get rid of the anonymous subs in options, and a routine
+that incorporates the common code for loading the master.conf file, and
 another routine that initializes the %$Options hash.   I am not yet
 initializing *everything* in the hash, but I think that might be a
 good move, depending on what we learn while building test harnesses.
