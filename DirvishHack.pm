@@ -1,7 +1,5 @@
 package DirvishHack ;  
 
-#  package main;      # I said it's a hack, dammit!
-
 # 1.3.X series
 # Copyright 2006 by the dirvish project
 # http://www.dirvish.org
@@ -10,8 +8,8 @@ package DirvishHack ;
 #   for other applications until dirvish 1.3.X stabilizes.  This
 #   will eat your babies.
 #
-# Last Revision   : $Rev: 69 $
-# Revision date   : $Date: 2006-11-12 01:53:57 -0600 (Sun, 12 Nov 2006) $
+# Last Revision   : $Rev: 70 $
+# Revision date   : $Date: 2006-11-12 02:31:39 -0600 (Sun, 12 Nov 2006) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/DirvishHack.pm $
 
@@ -53,8 +51,8 @@ $CONFDIR = "/etc/dirvish" if( $CONFDIR =~ /##/ );
 #########################################################################
 
 my %CodeID = (
-    Rev    => '$Rev: 69 $'     ,
-    Date   => '$Date: 2006-11-12 01:53:57 -0600 (Sun, 12 Nov 2006) $'    ,
+    Rev    => '$Rev: 70 $'     ,
+    Date   => '$Date: 2006-11-12 02:31:39 -0600 (Sun, 12 Nov 2006) $'    ,
     Author => '$Author: keithl $'  ,
     URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/DirvishHack.pm $' ,
 );

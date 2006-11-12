@@ -2,8 +2,8 @@
 # Build.PL Script for dirvish
 # Version 0.7,  Keith Lofstrom,  2006-Nov-11
 #
-# Last Revision   : $Rev: 69 $
-# Revision date   : $Date: 2006-11-12 01:53:57 -0600 (Sun, 12 Nov 2006) $
+# Last Revision   : $Rev: 70 $
+# Revision date   : $Date: 2006-11-12 02:31:39 -0600 (Sun, 12 Nov 2006) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/Build.PL $
 #
@@ -154,6 +154,8 @@ my $build = $class->new (
 
    module_name        => 'dirvish',
    dist_version       => '1.3.1',
+   dist_author        => 'Keith Lofstrom',
+   dist_abstract      => 'Dirvish, disk-to-disk backup using rsync',
    license            => 'open_source',
    create_makefile_pl => 'traditional',
 
