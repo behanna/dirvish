@@ -4,8 +4,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 64 $
-# Revision date   : $Date: 2006-11-11 18:33:55 -0600 (Sat, 11 Nov 2006) $
+# Last Revision   : $Rev: 66 $
+# Revision date   : $Date: 2006-11-11 21:34:41 -0600 (Sat, 11 Nov 2006) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvish-expire $
 
@@ -26,8 +26,8 @@
 
 my
 %CodeID = (
-    Rev    => '$Rev: 64 $'     ,
-    Date   => '$Date: 2006-11-11 18:33:55 -0600 (Sat, 11 Nov 2006) $'    ,
+    Rev    => '$Rev: 66 $'     ,
+    Date   => '$Date: 2006-11-11 21:34:41 -0600 (Sat, 11 Nov 2006) $'    ,
     Author => '$Author: keithl $'  ,
     URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvish-expire $' ,
 );
@@ -65,7 +65,7 @@ EOUSAGE
 	exit 255;
 }
 
-reset_options();          # initialize the %$Options hash
+$Options = reset_options(\&usage, @ARGV);     # initialize the %$Options hash
 
 load_master_config();
 
