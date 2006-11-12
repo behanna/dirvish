@@ -4,8 +4,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 66 $
-# Revision date   : $Date: 2006-11-11 21:34:41 -0600 (Sat, 11 Nov 2006) $
+# Last Revision   : $Rev: 69 $
+# Revision date   : $Date: 2006-11-12 01:53:57 -0600 (Sun, 12 Nov 2006) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvish $
 
@@ -25,8 +25,8 @@
 #########################################################################
 
 my %CodeID =
-    ( Rev    => '$Rev: 66 $'     ,
-      Date   => '$Date: 2006-11-11 21:34:41 -0600 (Sat, 11 Nov 2006) $'    ,
+    ( Rev    => '$Rev: 69 $'     ,
+      Date   => '$Date: 2006-11-12 01:53:57 -0600 (Sun, 12 Nov 2006) $'    ,
       Author => '$Author: keithl $'  ,
       URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvish $' ,
     );
@@ -282,7 +282,9 @@ $image =~ /%/
 !$$Options{branch} || ref($$Options{branch})
     and $$Options{branch} = $$Options{'branch-default'} || 'default';
 
-$seppuku_prefix = join(':', $$Options{vault}, $$Options{branch}, $image);
+# seppuku_prefix = join(':', $$Options{vault}, $$Options{branch}, $image);
+
+seppuku_prefix( join(':', $$Options{vault}, $$Options{branch}, $image) ); 
 
 if (-d "$vault/$$Options{'image-temp'}" && $image eq $$Options{'image-temp'})
 {
@@ -394,6 +396,9 @@ $log_file = join("/", $vault, $image, 'log');
 $log_temp = join("/", $vault, $image, 'log.tmp');
 $exl_file = join("/", $vault, $image, 'exclude');
 $fsb_file = join("/", $vault, $image, 'fsbuffer');
+
+log_file( $log_file );
+fsb_file( $fsb_file );
 
 while (($k, $v) = each %RSYNC_OPT)
 {

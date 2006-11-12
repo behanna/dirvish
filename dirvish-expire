@@ -4,8 +4,8 @@
 # Copyright 2005 by the dirvish project
 # http://www.dirvish.org
 #
-# Last Revision   : $Rev: 66 $
-# Revision date   : $Date: 2006-11-11 21:34:41 -0600 (Sat, 11 Nov 2006) $
+# Last Revision   : $Rev: 69 $
+# Revision date   : $Date: 2006-11-12 01:53:57 -0600 (Sun, 12 Nov 2006) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvish-expire $
 
@@ -26,8 +26,8 @@
 
 my
 %CodeID = (
-    Rev    => '$Rev: 66 $'     ,
-    Date   => '$Date: 2006-11-11 21:34:41 -0600 (Sat, 11 Nov 2006) $'    ,
+    Rev    => '$Rev: 69 $'     ,
+    Date   => '$Date: 2006-11-12 01:53:57 -0600 (Sun, 12 Nov 2006) $'    ,
     Author => '$Author: keithl $'  ,
     URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/dirvish-expire $' ,
 );
@@ -84,6 +84,10 @@ ref($$Options{vault}) and $$Options{vault} = undef;
 $$Options{time} and $expire_time = parsedate($$Options{time});
 $expire_time ||= time;
 
+# added to connect to the DirvishHack package
+@expires = ();
+expires(     \@expires    );
+expire_time( $expire_time );
 
 if ($$Options{vault})
 {
