@@ -1,4 +1,4 @@
-package DirvishHack;
+package main;      # I said it's a hack, dammit!
 
 # 1.3.X series
 # Copyright 2006 by the dirvish project
@@ -8,25 +8,25 @@ package DirvishHack;
 #   for other applications until dirvish 1.3.X stabilizes.  This
 #   will eat your babies.
 #
-# Last Revision   : $Rev: 66 $
-# Revision date   : $Date: 2006-11-11 21:34:41 -0600 (Sat, 11 Nov 2006) $
+# Last Revision   : $Rev: 67 $
+# Revision date   : $Date: 2006-11-11 23:20:15 -0600 (Sat, 11 Nov 2006) $
 # Last Changed by : $Author: keithl $
 # Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/lib/DirvishHack.pm $
 
-use       5.006 ;
-require   Exporter;
-@ISA      = qw(Exporter);
-@EXPORT   = qw( imsort check_expire findop seppuku config client
-              branch vault reset_options reset version errorscan
-              logappend scriptrun slurplist loadconfig
-              load_master_config check_exitcode
-            );
+# use       5.006 ;
+# require   Exporter;
+# @ISA      = qw(Exporter);
+# @EXPORT   = qw( imsort check_expire findop seppuku config client
+#              branch vault reset_options reset version errorscan
+#              logappend scriptrun slurplist loadconfig
+#              load_master_config check_exitcode
+#            );
 
 $VERSION = "1.3.1";
 
 #should CONFDIR be 'my' or 'our'?
 $CONFDIR = "##CONFDIR##" ;  # this may get replaced by ModuleBuild 
-$CONFDIR    = "/etc/dirvish" if( $CONFDIR =~ /##/ );
+$CONFDIR = "/etc/dirvish" if( $CONFDIR =~ /##/ );
 
 #########################################################################
 #                                                         		#
@@ -44,8 +44,8 @@ $CONFDIR    = "/etc/dirvish" if( $CONFDIR =~ /##/ );
 #########################################################################
 
 my %CodeID = (
-    Rev    => '$Rev: 66 $'     ,
-    Date   => '$Date: 2006-11-11 21:34:41 -0600 (Sat, 11 Nov 2006) $'    ,
+    Rev    => '$Rev: 67 $'     ,
+    Date   => '$Date: 2006-11-11 23:20:15 -0600 (Sat, 11 Nov 2006) $'    ,
     Author => '$Author: keithl $'  ,
     URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/lib/DirvishHack.pm $' ,
 );
