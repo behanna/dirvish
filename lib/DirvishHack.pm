@@ -7,10 +7,10 @@ package DirvishHack;
 #   This is tuned to work with dirvish 1.3.1 .  Please do not use
 #   for other applications until dirvish 1.3.X stabilizes.
 #
-# Last Revision   : $Rev: 64 $
-# Revision date   : $Date: 2006-11-11 18:33:55 -0600 (Sat, 11 Nov 2006) $
+# Last Revision   : $Rev: 65 $
+# Revision date   : $Date: 2006-11-11 18:34:50 -0600 (Sat, 11 Nov 2006) $
 # Last Changed by : $Author: keithl $
-# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/DirvishHack.pm $
+# Stored as       : $HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/lib/DirvishHack.pm $
 
 use 5.006 ;
 require Exporter;
@@ -40,10 +40,10 @@ $VERSION = "1.3.1";
 #########################################################################
 
 my %CodeID = (
-    Rev    => '$Rev: 64 $'     ,
-    Date   => '$Date: 2006-11-11 18:33:55 -0600 (Sat, 11 Nov 2006) $'    ,
+    Rev    => '$Rev: 65 $'     ,
+    Date   => '$Date: 2006-11-11 18:34:50 -0600 (Sat, 11 Nov 2006) $'    ,
     Author => '$Author: keithl $'  ,
-    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/DirvishHack.pm $' ,
+    URL    => '$HeadURL: file:///Users/behanna/workspaces/dirvish-svn-repo/dirvish_1_3_1/lib/DirvishHack.pm $' ,
 );
 
 #----------------------------------------------------------------------------
